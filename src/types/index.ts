@@ -10,3 +10,8 @@ export type BudgetContextProps = {
 export type BudgetProviderProps = {
   children: ReactNode
 }
+
+export type AmountDisplayProps = {
+  label: string,
+  amount: number
+}
