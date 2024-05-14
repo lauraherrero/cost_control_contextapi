@@ -2,8 +2,8 @@ import { categories } from "../../data/categories"
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import { useState } from "react";
-import { DraftExpense } from "../../types";
+import { ChangeEvent, useState } from "react";
+import { DraftExpense, Value } from "../../types";
 
 export const ExpenseForm = () => {
 
@@ -13,6 +13,22 @@ export const ExpenseForm = () => {
     category: '',
     date: new Date()
   });
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const isAmountField = ['amount'].includes(name);
+    setExpense({
+      ...expense,
+      [name]: isAmountField ? value : value
+    })
+  }
+
+  const handleChangeDate = (value: Value) => {
+    setExpense({
+      ...expense,
+      date: value
+    })
+  }
 
   return (
     <form className="space-y-5">
@@ -28,6 +44,7 @@ export const ExpenseForm = () => {
           placeholder="Add the name of the expense"
           className="bg-slate-100 p-2"
           value={expense.expenseName}
+          onChange={handleChange}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -41,6 +58,7 @@ export const ExpenseForm = () => {
           placeholder="Add the amount of the expense. Ej.: 300"
           className="bg-slate-100 p-2"
           value={expense.amount}
+          onChange={handleChange}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -52,6 +70,7 @@ export const ExpenseForm = () => {
           id="category"
           className="bg-slate-100 p-2"
           value={expense.category}
+          onChange={handleChange}
         >
           <option value="" disabled selected>--Select--</option>
           {categories.map(category => (
@@ -69,6 +88,7 @@ export const ExpenseForm = () => {
         <DatePicker 
           className="bg-slate-100 p-2 border-0"
           value={expense.date}
+          onChange={handleChangeDate}
         />
       </div>
       <input
