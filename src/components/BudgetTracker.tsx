@@ -14,15 +14,15 @@ export const BudgetTracker = () => {
           Resetear App
         </button>
         <AmountDisplay 
-          label='Presupuesto'
+          label='Budget'
           amount={300}
         />
         <AmountDisplay 
-          label='Disponible'
+          label='Available'
           amount={200}
         />
         <AmountDisplay 
-          label='Gastado'
+          label='Spent'
           amount={100}
         />
       </div>

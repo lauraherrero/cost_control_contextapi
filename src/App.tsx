@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { BudgetForm } from "./components/BudgetForm"
 import { useBudget } from "./hooks/useBudget"
 import { BudgetTracker } from "./components/BudgetTracker";
-import ExpenseModal from "./components/ExpensModal";
+import ExpenseModal from "./components/ExpenseModal";
 
 function App() {
 
