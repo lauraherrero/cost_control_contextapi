@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { BudgetForm } from "./components/BudgetForm"
+import { BudgetForm } from "./components/Budget/BudgetForm"
 import { useBudget } from "./hooks/useBudget"
-import { BudgetTracker } from "./components/BudgetTracker";
-import ExpenseModal from "./components/ExpenseModal";
+import { BudgetTracker } from "./components/Budget/BudgetTracker";
+import ExpenseModal from "./components/Expense/ExpenseModal";
 
 function App() {
 
