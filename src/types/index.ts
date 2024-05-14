@@ -36,3 +36,7 @@ export type Category = {
   name: string,
   icon: string
 }
+
+export type ErrorMessageProps = {
+  children: ReactNode
+}
