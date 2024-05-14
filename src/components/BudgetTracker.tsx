@@ -6,7 +6,7 @@ export const BudgetTracker = () => {
       <div className="flex justify-center">
         <img src="/public/grafico.jpg" alt="Gráfica de gastos" />
       </div>
-      <div className="flex flex-col justify-center items-center gap-8">
+      <div className="flex flex-col justify-center items-start gap-8">
         <button 
           type="button"
           className="bg-pink-600 w-full p-2 text-white uppercase font-bold"
