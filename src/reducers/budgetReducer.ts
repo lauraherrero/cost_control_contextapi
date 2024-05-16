@@ -40,7 +40,7 @@ export type BudgetState = {
   budget: number,
   modal: boolean
   expenses: Expense[]
-  editingId: Expense['id']
+  editingId: Expense['id'],
 };
 
 export const initialState : BudgetState = {

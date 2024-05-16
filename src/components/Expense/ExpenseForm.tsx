@@ -18,12 +18,14 @@ export const ExpenseForm = () => {
   });
 
   const [error, setError] = useState('');
-  const { dispatch, state } = useBudget();
+  const [previousAmount, setPreviousAmount] = useState(0);
+  const { dispatch, state, totalAvailable } = useBudget();
 
   useEffect(() => {
     if (state.editingId) {
       const editingExpense = state.expenses.filter(currentExpense => currentExpense.id === state.editingId)[0]
       setExpense(editingExpense);
+      setPreviousAmount(editingExpense.amount);
     }
   }, [state.editingId])
 
@@ -50,9 +52,13 @@ export const ExpenseForm = () => {
     if (Object.values(expense).includes('')) {
       setError('All fields are required');
     }
+    //Validar que no se pase el gasto del presupuesto
+    if ((expense.amount - previousAmount) > totalAvailable ) {
+      setError('Ese gasto se sale del presupuesto');
+    }
     //Agregar o actualizar un nuevo gasto
-    if(state.editingId) {
-      dispatch({type: 'UPDATE_EXPENSE', payload: {expense: { id: state.editingId, ...expense }}})
+    if (state.editingId) {
+      dispatch({ type: 'UPDATE_EXPENSE', payload: { expense: { id: state.editingId, ...expense } } })
     } else {
       dispatch({ type: 'ADD_EXPENSE', payload: { expense } })
     }
@@ -62,11 +68,12 @@ export const ExpenseForm = () => {
       amount: 0,
       expenseName: '',
       category: '',
-      date: new Date()
+      date: new Date(),
     })
+    setPreviousAmount(0);
   }
 
-  const isNewExpense = state.editingId ? 'Update expense' : 'New expense'
+  const isNewExpense = state.editingId ? 'Update expense' : 'New expense';
 
   return (
     <form className="space-y-5" onSubmit={handleSubmit}>
