@@ -66,9 +66,11 @@ export const ExpenseForm = () => {
     })
   }
 
+  const isNewExpense = state.editingId ? 'Update expense' : 'New expense'
+
   return (
     <form className="space-y-5" onSubmit={handleSubmit}>
-      <legend className="uppercase text-center text-2xl font-black border-b-4">New expense</legend>
+      <legend className="uppercase text-center text-2xl font-black border-b-4">{isNewExpense}</legend>
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div className="flex flex-col gap-2">
         <label htmlFor="expenseName" className="text-xl">
@@ -131,7 +133,7 @@ export const ExpenseForm = () => {
       <input
         type="submit"
         className="bg-blue-600 cursor-pointer w-full p-2 text-white uppercase font-bold rounded-lg"
-        value={'Record expense'}
+        value={state.editingId ? 'Save changes' : 'Record expense'}
       />
     </form>
   )
