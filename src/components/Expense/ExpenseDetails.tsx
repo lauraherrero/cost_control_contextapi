@@ -11,10 +11,13 @@ import { formatDate } from "../../helpers"
 import { ExpenseDetailsProps } from "../../types"
 import { AmountDisplay } from "../AmountDisplay"
 import { categories } from "../../data/categories"
+import { useBudget } from "../../hooks/useBudget";
 
 export const ExpenseDetails = ({ expense }: ExpenseDetailsProps) => {
 
   const categoryInfo = useMemo(() => categories.filter(cat => cat.id === expense.category)[0], [expense]);
+
+  const {dispatch} = useBudget()
 
   const leadingActions = () => (
     <LeadingActions>
@@ -29,7 +32,7 @@ export const ExpenseDetails = ({ expense }: ExpenseDetailsProps) => {
   const trailingActions = () => (
     <TrailingActions>
       <SwipeAction
-        onClick={() => {}}
+        onClick={() => dispatch({type: 'REMOVE_EXPENSE', payload: {id: expense.id}})}
         destructive={true}
       >
         Eliminar
