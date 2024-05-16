@@ -44,6 +44,14 @@ export const ExpenseForm = () => {
     }
     //Agregar un nuevo gasto
     dispatch({type: 'ADD_EXPENSE', payload: { expense }})
+
+    //Vaciar formulario y reiniciar el state
+    setExpense({
+      amount: 0,
+      expenseName: '',
+      category: '',
+      date: new Date()
+    })
   }
 
   return (
