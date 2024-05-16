@@ -12,7 +12,7 @@ export type BudgetProviderProps = {
 }
 
 export type AmountDisplayProps = {
-  label: string,
+  label?: string,
   amount: number
 }
 
