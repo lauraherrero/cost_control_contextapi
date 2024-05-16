@@ -21,8 +21,8 @@ export const ExpenseForm = () => {
   const { dispatch, state } = useBudget();
 
   useEffect(() => {
-    if(state.editingId) {
-      const editingExpense = state.expenses.filter(currentExpense => currentExpense.id === state.editingId) [0]
+    if (state.editingId) {
+      const editingExpense = state.expenses.filter(currentExpense => currentExpense.id === state.editingId)[0]
       setExpense(editingExpense);
     }
   }, [state.editingId])
@@ -47,11 +47,15 @@ export const ExpenseForm = () => {
     e.preventDefault();
 
     //validation
-    if(Object.values(expense).includes('')) {
+    if (Object.values(expense).includes('')) {
       setError('All fields are required');
     }
-    //Agregar un nuevo gasto
-    dispatch({type: 'ADD_EXPENSE', payload: { expense }})
+    //Agregar o actualizar un nuevo gasto
+    if(state.editingId) {
+      dispatch({type: 'UPDATE_EXPENSE', payload: {expense: { id: state.editingId, ...expense }}})
+    } else {
+      dispatch({ type: 'ADD_EXPENSE', payload: { expense } })
+    }
 
     //Vaciar formulario y reiniciar el state
     setExpense({
@@ -118,7 +122,7 @@ export const ExpenseForm = () => {
         <label htmlFor="amount" className="text-xl">
           Date of expense:
         </label>
-        <DatePicker 
+        <DatePicker
           className="bg-slate-100 p-2 border-0"
           value={expense.date}
           onChange={handleChangeDate}
