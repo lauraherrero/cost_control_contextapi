@@ -40,3 +40,7 @@ export type Category = {
 export type ErrorMessageProps = {
   children: ReactNode
 }
+
+export type ExpenseDetailsProps = {
+  expense: Expense
+}

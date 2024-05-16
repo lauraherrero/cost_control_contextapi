@@ -3,6 +3,7 @@ import { BudgetForm } from "./components/Budget/BudgetForm"
 import { useBudget } from "./hooks/useBudget"
 import { BudgetTracker } from "./components/Budget/BudgetTracker";
 import ExpenseModal from "./components/Expense/ExpenseModal";
+import { ExpenseList } from "./components/Expense/ExpenseList";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       </div>
       {isValidBudget && (
         <main className="max-w-3xl mx-auto py-10">
+          <ExpenseList />
           <ExpenseModal />
         </main>
       )}
