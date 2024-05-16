@@ -97,7 +97,7 @@ export const ExpenseForm = () => {
           value={expense.category}
           onChange={handleChange}
         >
-          <option value="" disabled selected>--Select--</option>
+          <option value="" disabled>--Select--</option>
           {categories.map(category => (
             <option key={category.id} value={category.id}>
               {category.name}
