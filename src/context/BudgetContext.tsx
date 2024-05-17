@@ -8,7 +8,7 @@ export const BudgetProvider = ({ children }: BudgetProviderProps) => {
 
   const [state, dispatch] = useReducer(budgetReducer, initialState);
 
-  const totalExpenses = useMemo(() => state.expenses.reduce((total, expense) => total + expense.amount, 0), [state.expenses]);
+  const totalExpenses = useMemo(() => state.expenses.reduce((total, expense) => expense.amount + total, 0) , [state.expenses]);
   const totalAvailable = state.budget - totalExpenses;
   
 

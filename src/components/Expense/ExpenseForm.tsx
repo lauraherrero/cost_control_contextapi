@@ -23,7 +23,7 @@ export const ExpenseForm = () => {
 
   useEffect(() => {
     if (state.editingId) {
-      const editingExpense = state.expenses.filter(currentExpense => currentExpense.id === state.editingId)[0]
+      const editingExpense = state.expenses.filter(currentExpense => currentExpense.id === state.editingId )[0]
       setExpense(editingExpense);
       setPreviousAmount(editingExpense.amount);
     }
@@ -34,7 +34,7 @@ export const ExpenseForm = () => {
     const isAmountField = ['amount'].includes(name);
     setExpense({
       ...expense,
-      [name]: isAmountField ? value : value
+      [name]: isAmountField ? Number(value) : value
     })
   }
 
@@ -50,11 +50,13 @@ export const ExpenseForm = () => {
 
     //validation
     if (Object.values(expense).includes('')) {
-      setError('All fields are required');
+      setError('All fields are required')
+      return;
     }
     //Validar que no se pase el gasto del presupuesto
     if ((expense.amount - previousAmount) > totalAvailable ) {
       setError('Ese gasto se sale del presupuesto');
+      return;
     }
     //Agregar o actualizar un nuevo gasto
     if (state.editingId) {

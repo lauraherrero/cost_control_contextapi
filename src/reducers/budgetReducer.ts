@@ -4,9 +4,7 @@ import { DraftExpense, Expense } from "../types";
 
 export type budgetActions = {
   type: 'ADD_BUDGET',
-  payload: { 
-    budget: number
-  }
+  payload: { budget: number }
 } | {
   type: 'SHOW_MODAL'
 } | {
@@ -23,6 +21,8 @@ export type budgetActions = {
 } | {
   type: 'UPDATE_EXPENSE',
   payload: {expense: Expense}
+} | {
+  type: 'RESET_APP'
 };
 
 
@@ -32,15 +32,15 @@ const initialBudget = () : number => {
 }
 
 const localStorageExpenses = () : Expense[] => {
-  const expenses = localStorage.getItem('expenses');
-  return expenses ? JSON.parse(expenses) : []
+  const localStorageExpenses = localStorage.getItem('expenses')
+  return localStorageExpenses ? JSON.parse(localStorageExpenses) : [];
 }
 
 export type BudgetState = {
   budget: number,
   modal: boolean
   expenses: Expense[]
-  editingId: Expense['id'],
+  editingId: Expense['id']
 };
 
 export const initialState : BudgetState = {
@@ -107,6 +107,13 @@ export const budgetReducer = (state: BudgetState = initialState, action: budgetA
       expenses: state.expenses.map(expense => expense.id === action.payload.expense.id ? action.payload.expense : expense),
       modal: false,
       editingId: ''
+    }
+  }
+  if(action.type === 'RESET_APP') {
+    return {
+      ...state,
+      budget: 0,
+      expenses: [],
     }
   }
   return state;
