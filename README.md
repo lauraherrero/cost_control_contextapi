@@ -1,30 +1,47 @@
-# React + TypeScript + Vite
+#  Cost Control Context API 📊 🧮💲
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Summary: 📝
 
-Currently, two official plugins are available:
+https://cost-control-contextapi.netlify.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Simple application based on the control of expenses by categories based on a budget.
 
-## Expanding the ESLint configuration
+The first step in the application is for the user to define an initial budget, which cannot be modified later.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+A view will then be displayed that allows the user to visualize the budget indicated, the money available and the amount spent, as well as a pie chart indicating the percentage spent.
 
-- Configure the top-level `parserOptions` property like this:
+At the bottom of the screen the complete list of expenses and the filter to apply the list of expenses by categories will appear.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+The user can add a new expense by clicking on the plus button at the bottom right.
+By clicking on it, a form will be displayed where a name and amount of the expense must be defined and a category and date of the expense must be selected. All fields must be filled in to be able to save a new expense.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The expense information persists thanks to localstorage despite reloading or closing the page.
+
+Finally, the user can reset the application with the button next to the pie chart, going to the budget definition part and starting again.
+
+
+
+## Technology Stack 💻
+The application has been made from scratch with React using Vite and zustand, which provides a centralized status management system that allows status to be shared among multiple components in an efficient way. 
+
+<ul>
+  <li>React</li>
+  <li>CustomHook</li>
+  <li>Typescript</li>
+  <li>Context API</li>
+  <li>LocalStorage</li>  
+  <li>Git</li>
+  <li>Vite</li>
+  <li>Tailwind</li>
+</ul>
+
+
+## Instructions ✍
+
+### How to run: 
+
+<pre>
+    <p>npm install <br></p>
+    <p>npm run dev <br></p>
+    
+</pre>
